@@ -4,6 +4,12 @@ import math
 import enum
 import random
 
+class Player:
+
+
+  x = 0
+  y = 0
+
 class Tile(enum.Enum):
   EMPTY = 0
   WALL = 1
@@ -19,13 +25,17 @@ class World:
     print("world constructor called")
 
   def toMapC(self, x, y):  # Pixel coords -> map coords
-    return ((x - self.cx) / 16, (y - this.cy) / 16)
+    return ((x - self.cx) / 16, (y - self.cy) / 16)
 
   def fromMapC(self, x, y):  # Map coords -> pixel coords
-    return (x * 16 + self.cx, y * 16 + this.cy)
+    return (x * 16 + self.cx, y * 16 + self.cy)
 
-  def getBlockBase():
-    return ((x - self.cx) - (x - self.cx) % 16 + self.cx, (y - self.cx) - (y - self.cx) % 16 + self.cx)
+  def getBlockBase(self, x, y):  # Figure out where the origin of the block here is
+    return (x - (x - self.cx) % 16, y - (y - self.cy) % 16)
+
+  def panRel(self, dx, dy):
+    self.cx += dx
+    self.cy += dy
 
   def getTileAt(self, x, y):  # Tile at (x, y) in map coords
     if (abs(x) < 5 and abs(y) < 5):
@@ -33,16 +43,24 @@ class World:
     else:
       return Tile.WALL
 
-  def addEnt(ent):  # Put entity on the map
+  def addEnt(self, ent):  # Put entity on the map
     ents.push(ent)
 
-  def getEnts():  # Get master entity list
+  def getEnts(self):  # Get master entity list
     return []
 
+  def player(self):
+    return self.p
+
+  p = Player()
   ents = []
   level = 0
   grand = random.Random()
   lrand = random.Random()
+  cx = 0.0
+  cy = 0.0
+  bx = 0.0
+  by = 0.0
   
 
   
