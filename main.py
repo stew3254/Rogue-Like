@@ -2,7 +2,9 @@
 
 import pyxel
 import world
+import player
 
+godmode = 0
 
 class App:
 	def __init__(self):
@@ -21,34 +23,27 @@ class App:
 		#Run the game
 		pyxel.run(self.update, self.draw)
 
+	def tryMove(self, x, y):
+		(plx, ply) = (self.w.player().x, self.w.player().y)
+		if (godmode or world.Tile.isClear(self.w.getTileAt(plx + x, ply + y))):
+			self.w.player().x += x
+			self.w.player().y += y
+			return True
+		print("That's a wall")
+		return False
+
 	def update(self):
 		#Quit if 'q' is pressed
 		if pyxel.btnp(pyxel.KEY_Q):
 			pyxel.quit()
-#		if pyxel.btn(pyxel.KEY_W):
-#			self.w.panRel(0, 1)
-#			print("Panning (+0,+1)")
-#			self.draw()
-#		if pyxel.btn(pyxel.KEY_S):
-#			self.w.panRel(0, -1)
-#			print("Panning (+0,-1)")
-#			self.draw()
-#		if pyxel.btn(pyxel.KEY_D):
-#			self.w.panRel(-1, 0)
-#			print("Panning (-1,+0)")
-#			self.draw()
-#		if pyxel.btn(pyxel.KEY_A):
-#			self.w.panRel(1, 0)
-#			print("Panning (+1,+0)")
-#			self.draw()
 		if pyxel.btnp(pyxel.KEY_W):
-			self.w.player().y -= 1
+			self.tryMove(0, -1)
 		if pyxel.btnp(pyxel.KEY_S):
-			self.w.player().y += 1
+			self.tryMove(0, 1)
 		if pyxel.btnp(pyxel.KEY_A):
-			self.w.player().x -= 1
+			self.tryMove(-1, 0)
 		if pyxel.btnp(pyxel.KEY_D):
-			self.w.player().x += 1
+			self.tryMove(1, 0)
 
 
 	def draw(self):

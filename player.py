@@ -11,7 +11,7 @@ class Skills:
 		self.id = skillID
 		self.damage = damage
 
-
+    
 class Player:
 	def __init__(self):
 		self.x = 0
@@ -31,4 +31,3 @@ class Player:
 
 	def dropItem(self):
 		print("Dropped")
-
