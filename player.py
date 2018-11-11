@@ -16,7 +16,7 @@ class Player:
 		self.health = 100
 		self.skills = []
 		self.inventory = []
-                self.isLeft = False
+		self.isLeft = False
 	
 	def equip(self, itemID):
 		print("Equipped")
