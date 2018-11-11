@@ -18,7 +18,7 @@ class ItemRegistry:
         return newItem
     def getIIDFromName(self, name):
         for item in self.List:
-            if item.name = name:
+            if item.name == name:
                 return item.itemID
         return -1
 
