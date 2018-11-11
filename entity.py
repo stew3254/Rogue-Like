@@ -90,7 +90,7 @@ _EnemyRegistry.registerEnemy("Rat",5,1,
                     player.health -= 1
             elif self.genPathTo(worldData, player.x, player.y, 10):
                 self.pathTo()
-    )
+    , 10)
 _EnemyRegistry.registerEnemy("Bird",5,1,
     [
         lambda: self.health -= 5,
@@ -112,5 +112,5 @@ _EnemyRegistry.registerEnemy("Bird",5,1,
                     player.health -= 1
             elif self.genPathTo(worldData, player.x, player.y, 10):
                 self.pathTo()
-    )
+    , 20)
 
