@@ -34,4 +34,3 @@ class Player:
 
 	def dropItem(self):
 		print("Dropped")
-
