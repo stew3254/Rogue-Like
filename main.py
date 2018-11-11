@@ -23,7 +23,7 @@ class App:
 		#Run the game
 		pyxel.run(self.update, self.draw)
 
-	def tryMove(self, x, y):
+	def tryMove(self, x, y, key):
 		#Get coords
 		(plx, ply) = (self.w.getPlayer().x, self.w.getPlayer().y)
 
@@ -32,6 +32,9 @@ class App:
 			#Update players
 			self.w.getPlayer().x += x
 			self.w.getPlayer().y += y
+
+		if key != w.getPlayer().isLeft:
+			self.w.getPlayer().isLeft = not self.w.getPlayer().isLeft
 
 			return True
 
@@ -45,22 +48,28 @@ class App:
 
 		#Move up one
 		if pyxel.btnp(pyxel.KEY_W):
-			self.tryMove(0, -1)
+			self.tryMove(0, -1, self.w.getPlayer().isLeft)
 
 		#Move down one
 		if pyxel.btnp(pyxel.KEY_S):
-			self.tryMove(0, 1)
+			self.tryMove(0, 1, self.w.getPlayer().isLeft)
 
 		#Move left one
 		if pyxel.btnp(pyxel.KEY_A):
-			self.tryMove(-1, 0)
+			self.tryMove(-1, 0, True)
 
 		#Move right one
 		if pyxel.btnp(pyxel.KEY_D):
-			self.tryMove(1, 0)
+			self.tryMove(1, 0, False)
 
 
 	def draw(self):
+		direction = 1
+		if self.w.getPlayer().isLeft:
+			direction = -1
+		else:
+			direction = 1
+
 		#Clear the screen with black
 		pyxel.cls(0)
 
