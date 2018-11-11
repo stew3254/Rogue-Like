@@ -87,7 +87,7 @@ _EnemyRegistry.registerEnemy("Rat",5,1,
         if worldData.getTileAt(player.x, player.y) == Tile.HVAC:
             if math.abs(self.x - player.x) + math.abs(self.y - player.y) == 1:
                 if not player.hasItem(_ItemRegistry.getIIDFromName("Steel-toed Boots")):
-                    player.health -= 1
+                    player.health -= 2
             elif self.genPathTo(worldData, player.x, player.y, 10):
                 self.pathTo()
     , 10)
@@ -110,6 +110,27 @@ _EnemyRegistry.registerEnemy("Bird",5,1,
             if math.abs(self.x - player.x) + math.abs(self.y - player.y) == 1:
                 if not player.hasItem(_ItemRegistry.getIIDFromName("Hardhat")):
                     player.health -= 1
+            elif self.genPathTo(worldData, player.x, player.y, 10):
+                self.pathTo()
+    , 20)
+_EnemyRegistry.registerEnemy("Security Officer",20,1,
+    [
+        lambda: self.health -= 5,
+        lambda: self.status |= __STATUS_CAUGHT,
+        lambda: return, # Miss
+        lambda: return, # Miss
+        lambda: return, # Miss
+        lambda: self.health -= 1,
+        lambda: self.health -= 15,
+        lambda: self.health -= 30,
+        lambda: self.health -= 2
+        lambda: self.health -= 20
+    ],
+    lambda worldData:
+        player = worldData.getPlayer()
+        if worldData.getTileAt(player.x, player.y) == Tile.EMPTY and not player.hasItem("ID Card"):
+            if math.abs(self.x - player.x) + math.abs(self.y - player.y) == 1:
+                player.health -= 5
             elif self.genPathTo(worldData, player.x, player.y, 10):
                 self.pathTo()
     , 20)
