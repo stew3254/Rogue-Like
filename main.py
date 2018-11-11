@@ -24,10 +24,10 @@ class App:
 		pyxel.run(self.update, self.draw)
 
 	def tryMove(self, x, y):
-		(plx, ply) = (self.w.player().x, self.w.player().y)
+		(plx, ply) = (self.w.getPlayer().x, self.w.getPlayer().y)
 		if (godmode or world.Tile.isClear(self.w.getTileAt(plx + x, ply + y))):
-			self.w.player().x += x
-			self.w.player().y += y
+			self.w.getPlayer().x += x
+			self.w.getPlayer().y += y
 			return True
 		print("That's a wall")
 		return False
@@ -62,7 +62,7 @@ class App:
 					pyxel.blt(px, py, 0, 0, 16, 16, 32)
 
 		#Draw the player model
-		(plx, ply) = self.w.fromMapC(self.w.player().x, self.w.player().y)
+		(plx, ply) = self.w.fromMapC(self.w.getPlayer().x, self.w.getPlayer().y)
 		pyxel.blt(plx, ply, 0, 0, 0, 16, 16, 14)
 
 

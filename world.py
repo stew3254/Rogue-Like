@@ -3,12 +3,12 @@
 import math
 import enum
 import random
+import player
 
-class Player:
-
-
-  x = 0
-  y = 0
+def r(x):  # Create a Random from a hash
+  R = random.Random()
+  R.seed(x)
+  return R
 
 class Tile (enum.Enum):
   EMPTY = 0
@@ -28,7 +28,13 @@ class World:
     self.bx = math.ceil(width / 16)
     self.by = math.ceil(height / 16)
     self.level = 0
+    self.seed = hash(seed)
+    self.reseedLevel()
+    
     print("world constructor called")
+
+  def reseedLevel(self):
+    self.lseed = self.level + hash(self.seed + self.level)
 
   def toMapC(self, x, y):  # Pixel coords -> map coords
     return ((x - self.cx) / 16, (y - self.cy) / 16)
@@ -44,7 +50,7 @@ class World:
     self.cy += dy
 
   def getTileAt(self, x, y):  # Tile at (x, y) in map coords
-    if (abs(x) < 5 and abs(y) < 5):
+    if (abs(math.floor(x)) < 5 and abs(math.floor(y)) < 5):
       return Tile.EMPTY
     else:
       return Tile.WALL
@@ -55,18 +61,19 @@ class World:
   def getEnts(self):  # Get master entity list
     return []
 
-  def player(self):
+  def getPlayer(self):
     return self.p
 
-  p = Player()
+  
+  seed = hash(0)
+  lseed = hash(0)
+  p = player.Player()
   ents = []
   level = 0
-  grand = random.Random()
-  lrand = random.Random()
   cx = 0.0
   cy = 0.0
   bx = 0.0
   by = 0.0
-  
+
 
   
