@@ -5,11 +5,14 @@ class Inventory:
 	pass
 
 
-class Skills:
-	def __init__(self, name, skillID, damage):
-		self.name = name
-		self.id = skillID
-		self.damage = damage
+class Skill:
+	def __init__(self):
+		self.name = ""
+		self.id = 0
+		self.damage = 0
+
+	def addSkill(self, self.name, self.id, self.damage):
+		print("Added skill")
 
     
 class Player:
