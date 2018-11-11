@@ -33,7 +33,7 @@ class App:
 			self.w.getPlayer().x += x
 			self.w.getPlayer().y += y
 
-		if key != w.getPlayer().isLeft:
+		if key != self.w.getPlayer().isLeft:
 			self.w.getPlayer().isLeft = not self.w.getPlayer().isLeft
 
 			return True
