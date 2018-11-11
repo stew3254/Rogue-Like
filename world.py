@@ -30,6 +30,7 @@ class World:
     self.level = 0
     self.seed = hash(seed)
     self.reseedLevel()
+    self.chunks = set()
     
     print("world constructor called")
 
@@ -42,6 +43,9 @@ class World:
   def fromMapC(self, x, y):  # Map coords -> pixel coords
     return (x * 16 + self.cx, y * 16 + self.cy)
 
+  def toChunkC(self, x, y):  # Map coords -> chunk coords
+    return (x / 256, y / 256)
+
   def getBlockBase(self, x, y):  # Figure out where the origin of the block here is
     return (x - (x - self.cx) % 16, y - (y - self.cy) % 16)
 
@@ -50,10 +54,19 @@ class World:
     self.cy += dy
 
   def getTileAt(self, x, y):  # Tile at (x, y) in map coords
-    if (abs(math.floor(x)) < 5 and abs(math.floor(y)) < 5):
-      return Tile.EMPTY
-    else:
-      return Tile.WALL
+    (cx, cy) = self.toChunkC(x, y)
+    thisc = []
+    while thisc == []:
+      thisc = [C for C in self.chunks if (C.x == math.floor(cx) and C.y == math.floor(cy))]
+      if thisc == []:
+        newchunk = Chunk(math.floor(cx), math.floor(cy))
+        newchunk.gen()
+        self.chunks.add(newchunk)
+        
+    return thisc[0].getTileAt(x, y)
+
+  def cleanFrom(self, x, y):  # Deletes chunks too far away from the block coords given
+    self.chunks = {C for C in self.chunks if (abs(C.x - x) > 3 and abs(C.y - y) > 3)}
 
   def addEnt(self, ent):  # Put entity on the map
     ents.push(ent)
@@ -65,6 +78,7 @@ class World:
     return self.p
 
   
+  chunks = set()
   seed = hash(0)
   lseed = hash(0)
   p = player.Player()
@@ -75,5 +89,35 @@ class World:
   bx = 0.0
   by = 0.0
 
+class Chunk:
+  def __init__(self, x, y):
+    self.x = x
+    self.y = y
+    self.data = [[Tile.WALL for X in range(256)] for Y in range(256)]
+    print("Constructor call for chunk at: " + str(x) + ", " + str(y))
 
+  def getTileAt(self, x, y):
+    return self.data[math.floor(x % 256)][math.floor(y % 256)]
+
+  def setTileAt(self, x, y, arg):
+    self.data[math.floor(x % 256)][math.floor(y % 256)] = arg
+
+  def gen(self):
+    print("Generating chunk at " + str(self.x) + ", " + str(self.y))
+    for x in range(256):
+      self.data[x][0] = Tile.EMPTY
+    for y in range(256):
+      self.data[0][y] = Tile.EMPTY
+    for x in range(-5, 6):
+      for y in range(-5, 6):
+        self.setTileAt(x, y, Tile.EMPTY)
+
+
+  data = []
+  x = 0
+  y = 0
+
+class ChunkBoundary:
+  def __init__(self):
+    return 0
   
