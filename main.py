@@ -16,7 +16,7 @@ class App:
 		pyxel.load("assets/rogue_like.pyxel")
 
 		#Create world constructor
-		self.derp = world.World(self.screen_width, self.screen_height, 0)
+		self.w = world.World(self.screen_width, self.screen_height, 0)
 
 		#Run the game
 		pyxel.run(self.update, self.draw)
@@ -33,13 +33,16 @@ class App:
 		#Draw the background
 		for x in range(int((self.screen_width + 1)/16)):
 			for y in range(int((self.screen_height + 1)/16)):
-
+				px = x * 16
+				py = y * 16
+				(bx, by) = self.w.toMapC(px, py)
 				#If something is a wall, draw the wall
-				if (self.derp.getTileAt(x, y) == world.Tile.WALL):
-					pyxel.blt(x*16, y*16, 0, 0, 16, 16, 32)
+				if (self.w.getTileAt(x, y) == world.Tile.WALL):
+					(px, py) = self.w.getBlockBase(px, py)
+					pyxel.blt(px, py, 0, 0, 16, 16, 32)
 
 		#Draw the player model
-		pyxel.blt(0, 0, 0, 0, 0, 16, 16)
+		pyxel.blt(0, 0, 0, 0, 0, 16, 16, 14)
 
 
 App()
