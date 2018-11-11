@@ -11,7 +11,7 @@ class Skill:
 		self.id = 0
 		self.damage = 0
 
-	def addSkill(self, self.name, self.id, self.damage):
+	def addSkill(self, name, skillID, damage):
 		print("Added skill")
 
     
@@ -20,7 +20,7 @@ class Player:
 		self.x = 0
 		self.y = 0
 		self.health = 100
-		self.skills = Skills()
+		self.skills = []
 		self.inventory = Inventory()
 	
 	def equip(self):
