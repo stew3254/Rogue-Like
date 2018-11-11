@@ -10,9 +10,15 @@ class Player:
   x = 0
   y = 0
 
-class Tile(enum.Enum):
+class Tile (enum.Enum):
   EMPTY = 0
   WALL = 1
+
+  @classmethod
+  def isClear(self, tile):
+    if (tile == Tile.EMPTY):
+      return True
+    return False
 
 class World:
 # Construct a world in a window of pixel dimensions given, seeded
