@@ -8,29 +8,30 @@ class Tile(enum.Enum):
   WALL = 1
 
 class World:
-  __init__(this, width, height, seed):
+  def __init__(this, width, height, seed):
     this.cx = width * 0.5
     this.cy = height * 0.5
     print("world constructor called")
 
-  toMapC(this, x, y):
+  def toMapC(this, x, y):
     return ((x - this.cx) / 16, (y - this.cy) / 16)
 
-  fromMapC(this, x, y):
+  def fromMapC(this, x, y):
     return (x * 16 + this.cx, y * 16 + this.cy)
 
-  getTileAt(this, x, y):
+  def getTileAt(this, x, y):
     if (math.abs(x) < 5 and math.abs(y) < 5):
       return Tile.EMPTY
     else:
       return Tile.WALL
 
-  addEnt(ent):
-# nothing yet
+  def addEnt(ent):
+    ents.push(ent)
 
-  getEnts():
+  def getEnts():
     return []
 
+  ents = []
   
 
   
