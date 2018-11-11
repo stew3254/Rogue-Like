@@ -35,5 +35,4 @@ def RatAI(worldData):
     pass
 
 _EnemyRegistry = EnemyRegistry()
-_EnemyRegistry.registerEnemy("Rat",10,1,[],[], *RatAI)
-
+_EnemyRegistry.registerEnemy("Rat",10,1,[],[], RatAI)
