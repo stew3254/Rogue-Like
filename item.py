@@ -1,5 +1,7 @@
 import copy
 
+# "iid" means "Item ID" in this document
+
 class Item:
     def __init__(self, name, iid):
         self.name = name
