@@ -33,7 +33,8 @@ class Player:
             if invSlot >= 0:
                 self.Inventory[invSlot].count += 1
             else:
-                self.Inventory.append(_ItemRegistry.createItemInstance(itemID)          
+                self.Inventory.append(_ItemRegistry.createItemInstance(itemID))
+		
         def hasItem(self, itemID):
             for item in Inventory:
                 if item.itemID == itemID:
