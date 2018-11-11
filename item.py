@@ -1,26 +1,30 @@
 import copy
 
-# "iid" means "Item ID" in this document
 
 class Item:
-    def __init__(self, name, iid):
+    def __init__(self, name, itemID):
         self.name = name
-        self.itemID = iid
+        self.itemID = itemID
         self.count = 0
 
 class ItemRegistry:
     List = []
     def registerItem(self, name):
         self.List.append(Item(name, len(self.List)))
-    def createItemInstance(iid, count=1):
-        newItem = copy.deepcopy(self.List[iid])
+
+    def createItemInstance(itemID, count=1):
+        newItem = copy.deepcopy(self.List[itemID])
         newItem.count = count
+
         return newItem
+
     def getIIDFromName(self, name):
         for item in self.List:
             if item.name == name:
                 return item.itemID
+
         return -1
+
 
 _ItemRegistry = ItemRegistry()
 
