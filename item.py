@@ -43,7 +43,7 @@ _ItemRegistry.registerItem("Assorted Metal Bits")
 _ItemRegistry.registerItem("Wires and Cables")
 _ItemRegistry.registerItem("Electrical Components")
 _ItemRegistry.registerItem("Office Supplies")
-_ItemRegistry.registerItem("Plumping Supplies")
+_ItemRegistry.registerItem("Plumbing Supplies")
 _ItemRegistry.registerItem("Computer Parts")
 
 # Defensive Gear
