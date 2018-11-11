@@ -27,6 +27,10 @@ class World:
   def getBlockBase(self, x, y):  # Figure out where the origin of the block here is
     return ((x - self.cx) - (x - self.cx) % 16 + self.cx, (y - self.cy) - (y - self.cy) % 16 + self.cy)
 
+  def panRel(self, dx, dy):
+    self.cx += dx
+    self.cy += dy
+
   def getTileAt(self, x, y):  # Tile at (x, y) in map coords
     if (abs(x) < 5 and abs(y) < 5):
       return Tile.EMPTY

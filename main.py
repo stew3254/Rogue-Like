@@ -25,6 +25,10 @@ class App:
 		#Quit if 'q' is pressed
 		if pyxel.btnp(pyxel.KEY_Q):
 			pyxel.quit()
+		if pyxel.btnp(pyxel.KEY_W):
+			self.w.panRel(0, 1)
+		if pyxel.btnp(pyxel.KEY_S):
+			self.w.panRel(0, -1)
 
 	def draw(self):
 		#Clear the screen with black
