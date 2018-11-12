@@ -1,0 +1,79 @@
+Tools:
+- Starting Wrench
+- Net
+- Bee Poison
+- Fire Extinguisher
+- Bootable Flash Drive
+- Soldering Iron
+- Standard toolbox
+- Electric toolbox
+- Welder
+- Cellphone
+ 
+Scrap:
+- Assorted metal bits
+- Wires and Cables
+- Electrical Components
+- Office Supplies
+- Plumping supplies
+- Computer parts
+- 
+
+Machines:
+- A really bad machine (Spawns Sparks)
+- A bad machine (Spawns Embers)
+- Copying Machine
+- Printer
+- Network Switch
+- HVAC System
+- Sprinkler Controller
+- Ventilation Controller
+- Electrical Breaker
+- Elevator Mechanism
+- Boiler
+- 
+
+Elemental Enemies:
+- Ember
+- Flame
+- Blaze
+- Frostbit
+- Frostbite
+- Spark
+- Bolt
+- Compile Error
+- Runtime Error
+- Kernel Panic
+
+Generic Enemies:
+- Rat
+-- 10 Max Health
+-- Speed 1
+-- 
+- Cat
+- Dog
+- Pigeon
+- Crow
+- Raven
+- Honeybee
+- Wasp
+- Killer Wasp
+- Security Gaurd
+- OSHA Agent
+- Police Officer
+- Generic Worker
+- Executive Worker
+- Shareholder
+
+Defense Gear:
+- Steel-toed Boots
+- Heavy-duty Pants
+- Hardhat
+- Netted gear
+- ID card
+- Work Certificate
+- Red Tape
+- Work coat
+- Rubber Boot
+- 'Learn you a Haskell for great good'
+- Tritium Sample
