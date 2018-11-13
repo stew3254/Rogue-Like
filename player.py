@@ -1,4 +1,5 @@
 import item
+from enum import Enum
 
 class Skill:
         def __init__(self):
@@ -8,7 +9,7 @@ class Skill:
 
         def addSkill(self, name, skillID, damage):
                 print("Added skill")
-    
+
 class Player:
         def __init__(self):
                 self.x = 0
@@ -16,7 +17,7 @@ class Player:
                 self.health = 100
                 self.skills = []
                 self.inventory = []
-                self.isLeft = False
+                self.direction = 0 # Right
         
         def equip(self, itemID):
                 print("Equipped")
